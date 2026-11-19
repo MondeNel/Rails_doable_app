@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :todos
 
+  # resources :projects => we could use this approach which would do everything below
+
   get "projects", to: "projects#index" # this would create a path to the index action of ProjectsController
   get "/projects/new", to: "projects#new", as: "new_project" # this would go to the Projects controller and hit the action method 'new' and the 'new_project' is our helper method projects path
 
