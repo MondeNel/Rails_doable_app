@@ -4,43 +4,53 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
-  # Show a single project (e.g., /projects/1)
+  # Show a single project
   def show
     @project = Project.find(params[:id])
   end
 
-  # Render the form for a new project
+  # Render form for a new project
   def new
     @project = Project.new
   end
 
-  # Save the new project to the database
+  # Save a new project
   def create
     @project = Project.new(project_params)
 
     if @project.save
       flash[:notice] = "Project created successfully!"
-      redirect_to project_path(@project) # Redirect to the show page on success
+      redirect_to project_path(@project) # Go to show page
     else
-      render :new, status: :unprocessable_entity # Re-render form with errors on failure
+      render :new, status: :unprocessable_entity # Re-render new form with errors
     end
   end
 
-  # Edit the existing project
+  # Render form to edit an existing project
   def edit
-    @project = Project.find(params[:id]) # we find the show id of the project
+    @project = Project.find(params[:id])
   end
 
-  # Update action
+  # Update an existing project
   def update
-      @project = Project.find(params[:id])
+    @project = Project.find(params[:id])
 
-    if @project.update(project_params) # target the show action for the :id of the item
-      flash[:notice] = "Project created successfully!"
-      redirect_to project_path(@project) # Redirect to the show page on success
+    if @project.update(project_params)
+      flash[:notice] = "Project updated successfully!"
+      redirect_to project_path(@project) # Go to show page
     else
-      render :new, status: :unprocessable_entity # Re-render form with errors on failure
+      render :edit, status: :unprocessable_entity # Re-render edit form with errors
     end
+  end
+
+  # Delete a project
+
+  def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+
+    flash[:notice] = "Project deleted"
+    redirect_to projects_path
   end
 
 
