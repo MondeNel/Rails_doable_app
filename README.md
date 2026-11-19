@@ -21,4 +21,8 @@ Things you may want to cover:
 
 * Deployment instructions
 
+
+
+## This is a series of building a Todo application
+
 * ...
