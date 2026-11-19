@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save
+      flash[:notice] = "Project created successfully!"
       redirect_to project_path(@project) # Redirect to the show page on success
     else
       render :new, status: :unprocessable_entity # Re-render form with errors on failure
@@ -34,7 +35,8 @@ class ProjectsController < ApplicationController
   def update
       @project = Project.find(params[:id])
 
-    if @project.update(project_params)
+    if @project.update(project_params) # target the show action for the :id of the item
+      flash[:notice] = "Project created successfully!"
       redirect_to project_path(@project) # Redirect to the show page on success
     else
       render :new, status: :unprocessable_entity # Re-render form with errors on failure
