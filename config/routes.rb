@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :todos
+
+  get "projects", to: "projects#index" # this would create a path to the index action of ProjectsController
+  get "/projects/:id", to: "projects#show", as: "project" # this would create a show individual item on the screen and points to the show method in the ProjectsController
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
