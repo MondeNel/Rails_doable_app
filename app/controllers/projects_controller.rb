@@ -25,6 +25,23 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # Edit the existing project
+  def edit
+    @project = Project.find(params[:id]) # we find the show id of the project
+  end
+
+  # Update action
+  def update
+      @project = Project.find(params[:id])
+
+    if @project.update(project_params)
+      redirect_to project_path(@project) # Redirect to the show page on success
+    else
+      render :new, status: :unprocessable_entity # Re-render form with errors on failure
+    end
+  end
+
+
   private
 
   # Only allow trusted parameters through

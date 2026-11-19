@@ -6,7 +6,12 @@ Rails.application.routes.draw do
 
   get "/projects/:id", to: "projects#show", as: "project" # this would create a show individual item on the screen and points to the show method in the ProjectsController
 
+  get "/projects/:id/edit", to: "projects#edit", as: "edit_project" # this would allow us to edited a single item by triggering the id of that item
+
   post "/projects", to: "projects#create" # this points to the ProjectsController and target the create action method
+
+  patch "/projects/:id", to: "projects#update"
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
